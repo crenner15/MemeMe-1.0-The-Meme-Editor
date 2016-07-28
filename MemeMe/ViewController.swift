@@ -30,13 +30,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         super.viewDidLoad()
         
         topText.defaultTextAttributes = memeTextAttributes
-        topText.text = "TOP"
-        topText.textAlignment = .Center
-        topText.delegate = self
-        
         bottomText.defaultTextAttributes = memeTextAttributes
+        
+        topText.text = "TOP"
         bottomText.text = "BOTTOM"
+        
+        topText.textAlignment = .Center
         bottomText.textAlignment = .Center
+        
+        topText.delegate = self
         bottomText.delegate = self
     }
     
@@ -50,7 +52,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } else {
             shareButton.enabled = true
         }
-        
+
         // Subscribe to keyboard notifications to detect when the keyboard appears
         subscribeToKeyboardNotifications()
     }
@@ -74,17 +76,18 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
 /** Image Selection **/
     @IBAction func pickAnImageFromAlbum(sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.PhotoLibrary
-        presentViewController(imagePicker, animated: true, completion: nil)
+        pickAnImage(UIImagePickerControllerSourceType.PhotoLibrary)
     }
     
     @IBAction func pickAnImageFromCamera (sender: AnyObject) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = UIImagePickerControllerSourceType.Camera
-        presentViewController(imagePicker, animated: true, completion: nil)
+        pickAnImage(UIImagePickerControllerSourceType.Camera)
+    }
+    
+    func pickAnImage(sourceType: UIImagePickerControllerSourceType){
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        imagePickerController.sourceType = sourceType
+        presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
@@ -161,19 +164,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     //Move the view when the keyboard covers the text field
     func subscribeToKeyboardNotifications() {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.keyboardWillHide(_:)), name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func unsubscribeFromKeyboardNotifications() {
-        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardDidShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillHideNotification, object: nil)
     }
     
     func keyboardWillShow(notification: NSNotification) {
-        self.view.frame.origin.y -= getKeyboardHeight(notification)
+        if bottomText.isFirstResponder() {
+            self.view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     func keyboardWillHide(notification: NSNotification) {
-        self.view.frame.origin.y += getKeyboardHeight(notification)
+        if bottomText.isFirstResponder() {
+            self.view.frame.origin.y += getKeyboardHeight(notification)
+        }
     }
     
     func getKeyboardHeight(notification: NSNotification) -> CGFloat {
