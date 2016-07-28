@@ -1,24 +1,27 @@
-Project Submission
+##Project Overview
+With this first version of MemeMe, students will create an app that enables a user to take a picture, and add text at the top and bottom to form a meme. The user will be able to share the photo on Facebook and Twitter and also by SMS or email. 
 
-You'll create a first version of the MemeMe app that enables a user to take a picture, and add text at the top and bottom to form a meme. The user will be able to share the photo on Facebook and Twitter and also by SMS or email.
+##Why this project?
+MemeMe covers many of the major UI components found in essentially every app. It combines them with the camera and social media activity view to create a fun and personal user experience. 
 
-How Do I Complete this Project?
-Note: All submitted projects must compile in Xcode's most up-to-date, stable release, which is currently: Xcode 7 and Swift 2.2.
+##What Will I learn?
+* Access the Camera and Photo Album using the UIImagePickerController
+* Understand how Swift optionals, closures, collections, classes, structs and protocols are used in iOS apps
+* Create Actions and Outlets with extremely high proficiency
+* Use a UIActivityViewController to share media with Facebook, Twitter, SMS, and Email
+* Describe the delegate pattern and give a full account of its importance and uses in iOS classes
 
-Read the project specification.
-Review the grading rubric to see how your project will be assessed. All criteria must "meet specifications" in order to pass.
-If desired, download a collection of images used in the app. (Available in the Downloadables section below.)
-If necessary, review Lesson 4 of UIKit Fundamentals for detailed instructions.
-Create your app!
-Submission
-Check Your Project for Completion
+##How Do I Complete this Project?
+1. View the detailed specifications <a href="https://docs.google.com/document/d/1bt-SoB1GgqLebcT2mtE6hglkByzlxrobR5eHFMGPcTg/pub?embedded=true" target="_blank">here</a>.
+2. If necessary, review the appropriate [lesson](https://www.udacity.com/course/viewer#!/c-ud788/l-4798201455/m-4696897319) of [UIKit Fundamentals](https://www.udacity.com/course/uikit-fundamentals--ud788) for detailed instructions.
+3. Create your app!
 
-Before submitting your project for evaluation, we recommend that you check that each of the following is true:
+##Evaluation
+Your project will be evaluated by a Udacity Code Reviewer according to the rubric <a href="https://review.udacity.com/#!/projects/4684952423/rubric" target="_blank">here</a>. All criteria must "meet specifications" in order to pass.
 
-Your app compiles & runs as expected
-You are proud of your app and its output
-You completed your project according to the instructions
-You checked your project against the rubric
-Run Into Problems?
+**Suggested additional features to make your app stand out:**
 
-If you are having any trouble running your project, then please email us at ios-project@udacity.com. Due to the high volume of submissions, the turnaround for your project can take up to a week.
+* User can choose between different fonts.
+* App uses “Impact” font.
+* User can crop image 
+* App displays exceptional graphic design
