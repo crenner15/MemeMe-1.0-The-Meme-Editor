@@ -23,23 +23,21 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let memeTextAttributes = [
         NSStrokeColorAttributeName : UIColor.blackColor(),
         NSForegroundColorAttributeName : UIColor.whiteColor(),
-        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
+        NSFontAttributeName : UIFont(name: "HelveticaNeue-CondensedBlack", size: 32)!,
         NSStrokeWidthAttributeName : -3.0]
+    
+    func setupTextField (textField: UITextField, defaultText: String) {
+        textField.delegate = self
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .Center
+        textField.text = defaultText
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        topText.defaultTextAttributes = memeTextAttributes
-        bottomText.defaultTextAttributes = memeTextAttributes
-        
-        topText.text = "TOP"
-        bottomText.text = "BOTTOM"
-        
-        topText.textAlignment = .Center
-        bottomText.textAlignment = .Center
-        
-        topText.delegate = self
-        bottomText.delegate = self
+        setupTextField(topText, defaultText: "TOP")
+        setupTextField(bottomText, defaultText: "BOTTOM")
     }
     
     override func viewWillAppear(animated: Bool) {
